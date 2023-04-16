@@ -2,7 +2,8 @@ from enum import Enum
 from random import randint
 import globalVar
 
-BLOCK_NUM= globalVar.get_value('BLOCK_NUM')
+BLOCK_NUM = globalVar.get_value('BLOCK_NUM')
+
 
 class Color(Enum):
     ''' 颜色 '''
@@ -19,6 +20,7 @@ class Color(Enum):
         g = randint(0, 255)
         b = randint(0, 255)
         return (r, g, b)
+
 
 class Map(object):
     def __init__(self, mapsize):
@@ -39,6 +41,7 @@ class Map(object):
                 y_cell += cell_height
                 yield (x_cell, y_cell)
 
+
 def gen_blocks(width, height):
     '''
     随机生成障碍物
@@ -47,10 +50,10 @@ def gen_blocks(width, height):
     :return:返回障碍物坐标集合
     '''
     i, blocklist = 0, []
-    while(i < BLOCK_NUM):
-        block = (randint(0, width-1), randint(0, height-1))
+    while (i < BLOCK_NUM):
+        block = (randint(0, width - 1), randint(0, height - 1))
         if block not in blocklist:
             blocklist.append(block)
-            i+=1
+            i += 1
 
     return blocklist

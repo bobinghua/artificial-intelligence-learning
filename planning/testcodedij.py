@@ -10,7 +10,8 @@ import matplotlib.pyplot as plt
 CELL_WIDTH = 16  # 单元格宽度
 CELL_HEIGHT = 16  # 单元格长度
 BORDER_WIDTH = 1  # 边框宽度
-BLOCK_NUM = 50  # 地图中的障碍物数量
+# BLOCK_NUM = 50  # 地图中的障碍物数量
+BLOCK_NUM = 5  # 地图中的障碍物数量
 
 
 class Color(Enum):
@@ -127,6 +128,13 @@ class AStar(object):
 
     def extend(self, cnode):
         nodes_neighbor = self.get_neighbor(cnode)
+        # if (cnode.pos[0] == 0 and cnode.pos[1]):
+        #     print(nodes_neighbor)
+        #     for node in nodes_neighbor:
+        #         print(node.pos)
+        print(nodes_neighbor)
+        for node in nodes_neighbor:
+            print(node.pos)
         for node in nodes_neighbor:
             # 判断节点node是否在closelist和blocklist中，因为closelist和blocklist中元素均为Node类，所以要用map函数转换为坐标集合
             if node.pos in list(map(lambda x: x.pos, self.closelist)) or node.pos in self.blocklist:
@@ -317,11 +325,11 @@ def runPathPlanning(mapsize, pos_snode, pos_enode, blocklist):
 
 
 def main():
-    mapsize = tuple(map(int, (20, 20)))
+    mapsize = tuple(map(int, (5, 5)))
     pos_snode = tuple(map(int, (0, 0)))
-    pos_enode = tuple(map(int, (12, 19)))
+    pos_enode = tuple(map(int, (3, 4)))
 
-    testNum = 10
+    testNum = 1
     testNumList = []
     resultRoutes = []
     blocklists = []
